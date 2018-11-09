@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Deck} from './objects/deck';
 
 @Injectable()
 export class RestService {
@@ -16,10 +15,10 @@ export class RestService {
     return Promise.reject(error.text() || error);
   }
 
-  createNewDeckAndDraw(drawCount: number): Promise<Deck> {
+  createNewDeckAndDraw(drawCount: number): Promise<any> {
     const newDeck = `${this.url}/new/draw?count=${drawCount}`;
     return this.http.get(newDeck).toPromise().then( resp => {
-      return resp.json() as Deck;
+      return resp.json() as any;
     });
   }
 
